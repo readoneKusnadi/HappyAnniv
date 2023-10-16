@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Happy Anniv</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #000000 30%, #4b0082, #ff8c00) no-repeat;
+            background-size: 100% 100%;
+            margin-bottom: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1, h3, .content {
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            background: linear-gradient(to right, silver, transparent, silver);
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        h3 {
+            animation: moveLeft 20s linear infinite;
+        }
+
+        .content {
+            width: 50%;
+            height: 50%;
+            background: linear-gradient(to right, silver, transparent, silver);
+            border-radius: 10px;
+        }
+
+        img, button {
+            max-width: 100px;
+            max-height: 100px;
+            margin-top: 10px;
+        }
+
+        button {
+            --bouncing-offset: 0.35em;
+            --bg: 178, 60%, 48%;
+            background-color: hsl(var(--bg));
+            color: var(--dark);
+            border: 0;
+            border-radius: 5px;
+            padding: 1px;
+            font-size: 20px;
+            font-weight: 100;
+            text-transform: uppercase;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        button:active,
+        button:focus-visible {
+            transform: translateY(var(--bouncing-offset));
+            box-shadow: none;
+        }
+
+        #background-image {
+            background-image: url("b.png");
+            background-size: 50%;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+            z-index: -1;
+            width: 50%;
+            height: 50%;
+            animation: rotate 10s linear infinite;
+        }
+
+        #image-c {
+            background-image: url("c.png");
+            background-size: 30px;
+            background-repeat: no-repeat;
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            animation: orbit-c 5s linear infinite;
+            transform-origin: center center;
+            z-index: -2;
+        }
+        #image-d {
+            background-image: url("d.png");
+            background-size: 30px;
+            background-repeat: no-repeat;
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            animation: orbit-d 5s linear infinite;
+            transform-origin: center center;
+            z-index: -2;
+        }
+        #image-e {
+            background-image: url("e.png");
+            background-size: 30px;
+            background-repeat: no-repeat;
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            animation: orbit-e 5s linear infinite;
+            transform-origin: center center;
+            z-index: -2;
+        }
+        @keyframes moveLeft {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes orbit-c {
+            0% {
+                transform: rotate(360deg) translateX(100px) rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg) translateX(100px) rotate(-360deg);
+            }
+        }
+        @keyframes orbit-d {
+            0% {
+                transform: rotate(360deg) translateX(50px) rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg) translateX(50px) rotate(-360deg);
+            }
+        }
+        @keyframes orbit-e {
+            0% {
+                transform: rotate(360deg) translateX(150px) rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg) translateX(150px) rotate(-360deg);
+            }
+        }
+        #Judul {
+            margin: 0;
+        }
+
+        #sub {
+            margin: 0;
+        }
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: white;
+            animation: blink 1s infinite;
+            z-index: -3;
+        }
+
+        .star::before, .star::after {
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: white;
+            animation: blink 1s infinite;
+        }
+
+        .star::before {
+            top: -2px;
+            left: 2px;
+        }
+
+        .star::after {
+            top: 2px;
+            left: -2px;
+        }
+
+        .thumbnails {
+            overflow-x: auto; /* Menambahkan scrollbar horizontal */
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        .thumbnail {
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .enlarged-image-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #enlarged-image {
+            max-width: 100%; /* Lebar maksimum 80% dari lebar viewport */
+            max-height: 100%; /* Tinggi maksimum 80% dari tinggi viewport */
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #enlarged-img {
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="Judul">
+        <h1>Selamat anniversary ke 2th Sayang</h1>
+    </div>
+    <div id="sub">
+        <h3>
+            19 Oct 2021: Kita dipertemukan dengan skenario tuhan setelah berpisah sekian lama pada akhirnya dua persaan saling bertemu setelah bermuara.
+        </h3>
+    </div>
+    <div class="content" id="slide1">
+        <h2>Tuliskan Nama Kamu</h2>
+        <img src="a.jpg" alt="aku dan kamu">
+        <br><br>
+        <input type="text" id="namaInput" placeholder="Tulisin nama kamu sayang">
+        <br><br>
+        <button onclick="showSlide(2)">Lanjut</button>
+    </div>
+    <div class="content" id="slide2" style="display: none;">
+        <h2>Galery Ridwan Dan</h2>
+        <h2 id="user"></h2> <!-- Ini adalah elemen yang akan menampilkan nama yang dimasukkan oleh pengguna -->
+        <div class="thumbnails">
+            <img src="a.jpg" alt="Image 1" class="thumbnail" onclick="showImage('Satu.jpg')">
+            <img src="a.jpg" alt="Image 2" class="thumbnail" onclick="showImage('Dua.jpg')">
+            <img src="a.jpg" alt="Image 3" class="thumbnail" onclick="showImage('Tiga.jpg')">
+            <img src="a.jpg" alt="Image 4" class="thumbnail" onclick="showImage('Empat.jpg')">
+            <img src="a.jpg" alt="Image 5" class="thumbnail" onclick="showImage('Lima.jpg')">
+            <img src="a.jpg" alt="Image 6" class="thumbnail" onclick="showImage('Enam.jpg')">
+            <img src="a.jpg" alt="Image 7" class="thumbnail" onclick="showImage('Tujuh.jpg')">
+            <img src="a.jpg" alt="Image 8" class="thumbnail" onclick="showImage('Delapan.jpg')">
+            <img src="a.jpg" alt="Image 9" class="thumbnail" onclick="showImage('Sembilan.jpg')">
+            <img src="a.jpg" alt="Image 10" class="thumbnail" onclick="showImage('Sepuluh.jpg')">
+            <img src="a.jpg" alt="Image 11" class="thumbnail" onclick="showImage('Sebelas.jpg')">
+            <img src="a.jpg" alt="Image 12" class="thumbnail" onclick="showImage('Dua belas.jpg')">
+            <img src="a.jpg" alt="Image 13" class="thumbnail" onclick="showImage('Tiga belas.jpg')">
+            <img src="a.jpg" alt="Image 14" class="thumbnail" onclick="showImage('Empat belas.jpg')">
+            <img src="a.jpg" alt="Image 15" class="thumbnail" onclick="showImage('Lima belas.jpg')">
+            <img src="a.jpg" alt="Image 16" class="thumbnail" onclick="showImage('Enam belas.jpg')">
+            <img src="a.jpg" alt="Image 17" class="thumbnail" onclick="showImage('Tujuh belas.jpg')">
+            <!-- Tambahkan thumbnail gambar lainnya di sini -->
+        </div>
+        <div class="enlarged-image-container" id="enlarged-image">
+            <img src="a.jpg"id="enlarged-img" alt="Enlarged Image">
+            <button id="close-button" onclick="closeImage()">Close</button>
+        </div>
+        <button onclick="showSlide(1)">Kembali</button>
+    </div>
+    <br>
+    <audio id="audio" controls volume="1" loop>
+        <source src="A.mp3" type="audio/mpeg">
+        <source src="A.ogg" type="audio/ogg">
+        <source src="A.wav" type="audio/wav">
+    </audio>
+    <br><br>
+    <div id="background-image">
+        <div id="image-c"></div>
+        <div id="image-d"></div>
+        <div id="image-e"></div>
+        <div class="star" style="top: 10%; left: 20%;"></div>
+        <div class="star" style="top: 30%; left: 40%;"></div>
+        <div class="star" style="top: 50%; left: 60%;"></div>
+        <div class="star" style="top: 70%; left: 80%;"></div>
+        <div class="star" style="top: 90%; left: 100%;"></div>
+        <div class="star" style="top: 15%; left: 25%;"></div>
+        <div class="star" style="top: 35%; left: 45%;"></div>
+        <div class="star" style="top: 65%; left: 75%;"></div>
+        <div class="star" style="top: 85%; left: 100%;"></div>
+        <div class="star" style="top: 10%; left: 30%;"></div>
+        <div class="star" style="top: 50%; left: 70%;"></div>
+        <div class="star" style="top: 90%; left: 100%;"></div>
+        <div class="star" style="top: 0%; left: 20%;"></div>
+        <div class="star" style="top: 40%; left: 60%;"></div>
+        <div class="star" style="top: 80%; left: 100%;"></div>
+        <!--kom-->
+        <div class="star" style="top: 11%; left: 21%;"></div>
+        <div class="star" style="top: 33%; left: 43%;"></div>
+        <div class="star" style="top: 53%; left: 63%;"></div>
+        <div class="star" style="top: 73%; left: 83%;"></div>
+        <div class="star" style="top: 93%; left: 100%;"></div>
+        <div class="star" style="top: 18%; left: 28%;"></div>
+        <div class="star" style="top: 38%; left: 48%;"></div>
+        <div class="star" style="top: 68%; left: 78%;"></div>
+        <div class="star" style="top: 88%; left: 100%;"></div>
+        <div class="star" style="top: 13%; left: 33%;"></div>
+        <div class="star" style="top: 53%; left: 73%;"></div>
+        <div class="star" style="top: 93%; left: 100%;"></div>
+        <div class="star" style="top: 3%; left: 23%;"></div>
+        <div class="star" style="top: 43%; left: 63%;"></div>
+        <div class="star" style="top: 83%; left: 100%;"></div>
+    </div>
+    <script>
+        function showSlide(slideNumber) {
+            var slides = document.querySelectorAll('.content');
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].style.display = 'none';
+            }
+            document.getElementById('slide' + slideNumber).style.display = 'block';
+
+            if (slideNumber === 2) {
+                // Jika slide kedua ditampilkan, ambil input pengguna dari slide pertama dan tampilkan di slide kedua
+                var namaInput = document.getElementById('namaInput');
+                var userName = document.getElementById('user');
+                userName.textContent = namaInput.value;
+            }
+        }
+       function showImage(imageSrc) {
+            var enlargedImage = document.getElementById('enlarged-image');
+            var enlargedImg = document.getElementById('enlarged-img');
+            enlargedImg.src = imageSrc;
+
+            // Tambahkan kondisi untuk hanya menampilkan gambar yang diperbesar saat thumbnail diklik
+            if (enlargedImage.style.display === 'none') {
+                enlargedImage.style.display = 'flex'; // Menampilkan gambar yang diperbesar
+            }
+        }
+
+        function closeImage() {
+            var enlargedImage = document.getElementById('enlarged-image');
+            enlargedImage.style.display = 'none'; // Menyembunyikan gambar yang diperbesar
+        }
+    </script>
+</body>
+</html>

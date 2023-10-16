@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Happy Anniv</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #000000 30%, #4b0082, #ff8c00) no-repeat;
+            background-size: 100% 100%;
+            margin-bottom: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        h1 {
+            color: white;
+            background: linear-gradient(to right, silver, transparent, silver);
+            text-align: center;
+            text-shadow: 2px 2px 4px #000;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: white;
+            background: linear-gradient(to right, silver, transparent, silver);
+        }
+
+        h3 {
+            color: white;
+            text-align: center;
+            animation: moveLeft 20s linear infinite;
+            color: white;
+            background: linear-gradient(to right, silver, transparent, silver);
+            text-shadow: 2px 2px 4px #000;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        @keyframes moveLeft {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 50%;
+            height: 50%;
+            background: linear-gradient(to right, silver, transparent, silver);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+
+        button {
+            --bouncing-offset: 0.35em;
+            --bg: 178, 60%, 48%;
+            background-color: hsl(var(--bg));
+            color: var(--dark);
+            border: 0;
+            border-radius: 5px;
+            padding: 1px;
+            font-size: 20px;
+            font-weight: 100;
+            text-transform: uppercase;
+            line-height: 1;
+            cursor: pointer;
+            box-shadow: 0 var(--bouncing-offset) 0 0 hsl(var(--bg), 0.5);
+        }
+
+        button:active,
+        button:focus-visible {
+            transform: translateY(var(--bouncing-offset));
+            box-shadow: none;
+        }
+
+        #stars, #falling-stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        #b {
+            position: absolute;
+            top: 0;
+            left: 100%;
+            max-width: 5%;
+            animation: moveDiagonal 5s linear forwards, centerImage 1s linear 6s forwards;
+            transform-origin: top left;
+            display: none;
+        }
+
+        @keyframes moveDiagonal {
+            0% {
+                left: 100%;
+                max-width: 5%;
+            }
+            25% {
+                left: 75%;
+                max-width: 25%;
+            }
+            50% {
+                left: 50%;
+                max-width: 50%;
+            }
+            75% {
+                left: 25%;
+                max-width: 25%;
+            }
+            100% {
+                left: 0%;
+                max-width: 5%;
+            }
+        }
+
+        @keyframes centerImage {
+            0% {
+                display: block;
+                left: 0;
+                max-width: 5%;
+            }
+            100% {
+                display: block;
+                left: 50%;
+                max-width: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="stars"></div>
+    <div id="falling-stars"></div>
+    <h1>Selamat anniversary ke 2th Sayang</h1>
+    <h3>
+        19 Oct 2021: Kita dipertemukan dengan skenario tuhan setelah berpisah sekian lama pada akhirnya dua persaan saling bertemu setelah bermuara.
+    </h3>
+    <div class="content">
+        <h2>Tuliskan Nama Kamu</h2>
+        <img src="a.jpg" alt="aku dan kamu">
+        <br><br>
+        <input type="text" placeholder="Tulisin nama kamu sayang">
+        <br><br>
+        <button>Lanjut</button>
+    </div>
+    <br>
+    <audio id="audio" controls volume="1" loop>
+        <source src="A.mp3" type="audio/mpeg">
+        <source src="A.ogg" type="audio/ogg">
+        <source src="A.wav" type="audio/wav">
+    </audio>
+    <img id="b" src="b.png">
+</body>
+</html>
